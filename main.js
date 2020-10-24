@@ -3,6 +3,7 @@
 
 const nandibus = document.querySelector('.nandibus');
 const keys = Array.from(document.querySelectorAll('.key'));
+let turnon = false;
 
 
 /* RESIZE NANDIBUS */
@@ -42,10 +43,6 @@ window.addEventListener('keydown', e => {
     key.classList.add('hover');
     key.classList.add('active');
     key.click();
- // Run light animation on key press   
-    
-    
-
 
     setTimeout(() => {
         key.classList.remove('active');
@@ -64,13 +61,15 @@ const lights = {
     yellow: document.querySelector('.nandibus-lights .yellow')
 };
 
-const lightsAnimation = (states, defaultDuration) => {
+const turnOffLights = () => {
+    lights.blue.classList.remove('--on');
+    lights.red.classList.remove('--on');
+    lights.yellow.classList.remove('--on');
+};
 
-    const turnOffLights = () => {
-        lights.blue.classList.remove('--on');
-        lights.red.classList.remove('--on');
-        lights.yellow.classList.remove('--on');
-    }
+const lightsAnimation = (states, defaultDuration) => {
+    if (!turnon) { return; }
+
 
     const stateTransformed = states.map(state => {
         return { 
@@ -84,7 +83,7 @@ const lightsAnimation = (states, defaultDuration) => {
 
     const executeStep = (pos, states) => {
         const state = states[pos];
-        if (!state) { return; }
+        if (!state || !turnon) { return; }
         state.action();
         sleep(state.delay).then(() => { executeStep(pos + 1, states); });
     }
@@ -103,6 +102,7 @@ const turnOnAnimation = [
     { active: [ ] },
     { active: [ lights.blue, lights.red, lights.yellow ] },
 ];
+
 const keyPressedAnimation = [
     { active: [ ] },
     { active: [ lights.blue,lights.red  ] },
@@ -113,6 +113,14 @@ const keyPressedAnimation = [
 ];
 
 
-setTimeout(function() {
-    lightsAnimation(turnOnAnimation, 300);
-}, 2000);
+/* TURN ON AND OFF */
+
+const powerButton = document.querySelector('.power');
+
+powerButton.addEventListener('click', () => {
+    turnon = !turnon;
+
+    turnon ?
+        lightsAnimation(turnOnAnimation, 300) :
+        turnOffLights();
+});

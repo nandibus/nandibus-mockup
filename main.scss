@@ -5,6 +5,7 @@ $background: $background-blue;
 $material: #c9c8c5;
 $material-detail: desaturate(darken($material, 5%), 0%);
 $keyboard: #111;
+$material-vents: desaturate(darken($material, 10%), 0%);
 
 $key-color: #fff;
 $key-background: #373737;
@@ -67,11 +68,11 @@ body {
     position: relative;
     align-items: baseline;
     user-select: none;
-    opacity: 0;
-    margin-top: -100px;
-    animation: 1s hello-nandibus;
-    animation-delay: .8s;
-    animation-fill-mode: forwards;
+    // margin-top: -100px;
+    // opacity: 0;
+    // animation: 1s hello-nandibus;
+    // animation-delay: .8s;
+    // animation-fill-mode: forwards;
 
     box-shadow:
         inset 0 -0.125cm 0.375cm 0.1em darken($material, 3%),
@@ -125,7 +126,6 @@ body {
                 border-radius: 0.2cm;
                 box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material-detail, 4%);
             }
-
         }
 
 
@@ -399,6 +399,65 @@ body {
                 }
             }
 
+        }
+    }
+
+    .vents {
+        background: $material-vents;
+        position: absolute;
+        width: 1.7cm;
+        height: 14.9cm;
+        right: 0;
+        border-radius: 0.7cm 0 0 0.7cm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-end;
+        padding: 0.2cm 0;
+        
+        box-shadow:
+            inset 0 0.5625em 0.5em -0.25em darken($material-vents, 5%),
+            inset 0 -0.5em 1em darken($material-vents, 5%),
+            0 2px 4px rgba(0,0,0,0.02);
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0.125em;
+            left: 0.0625em;
+            display: block;
+            width: 100%;
+            height: 50%;
+            border-radius: 0.2cm;
+            box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material-vents, 8%);
+        }
+
+        .detail {
+            width: 1.5cm;
+            height: 0.2cm;
+            background: darken($material-vents, 20%);
+            border-radius: 0.2cm 0 0 0.2cm;
+            position: relative;
+
+            &:first-child, &:last-child {
+                width: 1.2cm;
+            }
+
+            box-shadow:
+                inset 0 -2px 2px darken($material-vents, 15%),
+                0 2px 4px rgba(0,0,0,0.1);
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0.1em;
+                left: 0.0625em;
+                display: block;
+                width: 100%;
+                height: 50%;
+                border-radius: 0.2cm;
+                box-shadow: inset 0.125em 0.3125em 0.125em -0.25em darken($material-vents, 8%);
+            }
         }
     }
 }

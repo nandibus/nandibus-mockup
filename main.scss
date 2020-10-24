@@ -156,11 +156,12 @@ body {
             text-shadow: 2px 2px 1px darken($key-background, 9%);
             cursor: pointer;
 
-            &:hover {
+
+            &:hover, &.hover {
                 background: linear-gradient(darken($key-background, 3%), $key-background);
             }
 
-            &:active {
+            &:active, &.active {
                 border-left-color: darken($key-border, 4%);
                 border-left-color: darken($key-border, 4%);
                 border-top-color: darken($key-border, 6%);
@@ -216,11 +217,11 @@ body {
                 border-top-color: darken($key-special-border, 3%);
                 border-bottom-color: lighten($key-special-border, 7%);
 
-                &:hover {
+                &:hover, &.hover {
                     background: linear-gradient(darken($key-special-background, 3%), $key-special-background);
                 }
 
-                &:active {
+                &:active, &.active {
                     border-left-color: darken($key-special-border, 4%);
                     border-left-color: darken($key-special-border, 4%);
                     border-top-color: darken($key-special-border, 6%);
@@ -250,7 +251,7 @@ body {
                     border-bottom-color: lighten($key-special-border, 7%);
                 }
 
-                &:hover {
+                &:hover, &.hover {
                     background: linear-gradient(darken($key-special-background, 3%), darken($key-special-background, 2%));
 
                     .append {
@@ -258,7 +259,7 @@ body {
                     }
                 }
 
-                &:active {
+                &:active, &.active {
                     border-left-color: darken($key-special-border, 4%);
                     border-left-color: darken($key-special-border, 4%);
                     border-top-color: darken($key-special-border, 6%);

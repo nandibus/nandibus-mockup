@@ -2,6 +2,7 @@
 /* INIT */
 
 const nandibus = document.querySelector('.nandibus');
+const keys = Array.from(document.querySelectorAll('.key'));
 
 
 /* RESIZE NANDIBUS */
@@ -20,7 +21,25 @@ window.addEventListener('resize', resizeNandibus);
 
 /* ADD SOUND TO KEY PRESS */
 
-const keys = document.querySelectorAll('.key');
 const keyPressSound = document.getElementById('key-press-sound');
 
-Array.from(keys).forEach(el => el.addEventListener('click', () => keyPressSound.play() ));
+keys.forEach(key => key.addEventListener('click', () => keyPressSound.play() ));
+
+
+/* CLICK NANDIBUS KEY ON KEYPRESS */
+
+window.addEventListener('keydown', function(e) {
+    console.log(e.code);
+
+    const key = keys.filter(key => key.dataset.keycode === e.code)[0];
+
+    if (!key) { return; }
+
+    key.classList.add('hover');
+    key.classList.add('active');
+    key.click();
+
+    setTimeout(() => {
+        key.classList.remove('active');
+    }, 100);
+});

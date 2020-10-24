@@ -22,15 +22,14 @@ window.addEventListener('resize', resizeNandibus);
 /* ADD SOUND TO KEY PRESS */
 
 const keyPressSound = document.getElementById('key-press-sound');
+const playSound = () => keyPressSound.paused ? keyPressSound.play() : keyPressSound.currentTime = 0;
 
-keys.forEach(key => key.addEventListener('click', () => keyPressSound.play() ));
+keys.forEach(key => key.addEventListener('click', playSound ));
 
 
 /* CLICK NANDIBUS KEY ON KEYPRESS */
 
-window.addEventListener('keydown', function(e) {
-    console.log(e.code);
-
+window.addEventListener('keydown', e => {
     const key = keys.filter(key => key.dataset.keycode === e.code)[0];
 
     if (!key) { return; }

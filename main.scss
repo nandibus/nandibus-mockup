@@ -18,6 +18,10 @@ $key-special-border: darken($key-background, 6%);
 
 $nandibus-logo: #464646;
 
+$nandibus-blue: #5C90C8;
+$nandibus-red: #F04C88;
+$nandibus-yellow: #FFEB3B;
+
 * {
     margin: 0;
     padding: 0;
@@ -111,16 +115,123 @@ body {
 
         }
 
-        h1 {
+
+        .nandibus-brand {
             margin-left: 1cm;
             margin-right: 1.5cm;
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 1.0cm;
-            letter-spacing: 0.05cm;
-            color: $nandibus-logo;
-
-            text-shadow: 2px 2px 0 lighten($material, 10%);
             margin-top: 0.05cm;
+            position: relative;
+            display: flex;
+            align-items: baseline;
+            flex-direction: column;
+
+            .nandibus-lights {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+                margin-top: -0.5cm;
+
+                div {
+                    width: 0.46cm;
+                    height: 0.46cm;
+                    background: $material-detail;
+                    border-radius: 50%;
+                    position: relative;
+                    box-shadow:
+                        2px 2px 4px darken($material, 15%),
+                        inset -2px -2px 4px desaturate(darken($material, 20%), 10%);
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 0.05em;
+                        left: 0.02em;
+                        display: block;
+                        width: 100%;
+                        height: .5cm;
+                        border-radius: 50%;
+                        box-shadow: inset 0.125em 0.3125em 0.125em -0.25em red;
+                    }
+                }
+
+                .blue {
+                    background: desaturate(darken($nandibus-blue, 15%), 25%);
+                    box-shadow:
+                        2px 2px 4px darken($material, 15%),
+                        inset -2px -2px 4px desaturate(darken($nandibus-blue, 20%), 10%);
+
+                    &:before {
+                        box-shadow: inset 0.125em 0.3125em 0.125em -0.25em darken($nandibus-blue, 2%);
+                    }
+
+                    &.--on {
+                        background: $nandibus-blue;
+
+                        box-shadow:
+                            inset -2px -2px 4px desaturate(darken($nandibus-blue, 5%), 10%),
+                            0 0 10px $nandibus-blue,
+                            0 0 20px $nandibus-blue,
+                            0 0 30px $nandibus-blue,
+                            0 0 50px $nandibus-blue,
+                            0 0 70px $nandibus-blue;
+                    }
+                }
+
+                .red {
+                    background: desaturate(darken($nandibus-red, 15%), 25%);
+                    box-shadow:
+                        2px 2px 4px darken($material, 15%),
+                        inset -2px -2px 4px desaturate(darken($nandibus-red, 20%), 40%);
+
+                    &:before {
+                        box-shadow: inset 0.125em 0.3125em 0.125em -0.25em darken($nandibus-red, 2%);
+                    }
+
+                    &.--on {
+                        background: $nandibus-red;
+
+                        box-shadow:
+                            inset -2px -2px 4px desaturate(darken($nandibus-red, 5%), 10%),
+                            0 0 10px $nandibus-red,
+                            0 0 20px $nandibus-red,
+                            0 0 30px $nandibus-red,
+                            0 0 50px $nandibus-red,
+                            0 0 70px $nandibus-red;
+                    }
+                }
+
+                .yellow {
+                    background: desaturate(darken($nandibus-yellow, 15%), 19%);
+                    box-shadow:
+                        2px 2px 4px darken($material, 15%),
+                        inset -2px -2px 4px desaturate(darken($nandibus-yellow, 20%), 40%);
+
+                    &:before {
+                        box-shadow: inset 0.125em 0.3125em 0.125em -0.25em desaturate(darken($nandibus-yellow, 5%), 10%);
+                    }
+
+                    &.--on {
+                        background: $nandibus-yellow;
+
+                        box-shadow:
+                            inset -2px -2px 4px desaturate(darken($nandibus-yellow, 8%), 15%),
+                            0 0 10px $nandibus-yellow,
+                            0 0 20px $nandibus-yellow,
+                            0 0 30px $nandibus-yellow,
+                            0 0 50px $nandibus-yellow,
+                            0 0 70px $nandibus-yellow;
+                    }
+                }
+            }
+
+            h1 {
+                font-family: 'Archivo Black', sans-serif;
+                font-size: 1.0cm;
+                letter-spacing: 0.05cm;
+                color: $nandibus-logo;
+                text-shadow: 2px 2px 0 lighten($material, 10%);
+                margin-top: 0.3cm;
+            }
         }
     }
 
@@ -155,7 +266,6 @@ body {
             margin: 0 0.06cm;
             text-shadow: 2px 2px 1px darken($key-background, 9%);
             cursor: pointer;
-
 
             &:hover, &.hover {
                 background: linear-gradient(darken($key-background, 3%), $key-background);

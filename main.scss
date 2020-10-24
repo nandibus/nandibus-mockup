@@ -2,9 +2,20 @@ $background: #b7c9c8;
 $material: #c9c8c5;
 $material-detail: desaturate(darken($material, 5%), 0%);
 $keyboard: #111;
+
 $key-color: #fff;
 $key-background: #373737;
 $key-border: darken($key-background, 6%);
+$key-special-background: $key-background;
+$key-special-border: darken($key-background, 6%);
+
+// $keyboard: #414141;
+// $key-color: #111;
+// $key-background: #d4d4d4;
+// $key-border: darken($key-background, 6%);
+// $key-special-background: #a8a8a8;
+// $key-special-border: darken($key-special-background, 6%);
+
 $nandibus-logo: #464646;
 
 * {
@@ -187,51 +198,83 @@ body {
                 font-size: 0.4cm;
             }
 
+            &.--esc,
+            &.--backspace,
+            &.--tab,
+            &.--enter,
+            &.--capslock,
+            &.--l-shift,
+            &.--r-shift,
+            &.--l-ctrl,
+            &.--alt,
+            &.--alt-graph,
+            &.--menu,
+            &.--r-ctrl,
+            &.--space {
+                background: $key-special-background;
+                border-color: $key-special-border;
+                border-top-color: darken($key-special-border, 3%);
+                border-bottom-color: lighten($key-special-border, 7%);
+
+                &:hover {
+                    background: linear-gradient(darken($key-special-background, 3%), $key-special-background);
+                }
+
+                &:active {
+                    border-left-color: darken($key-special-border, 4%);
+                    border-left-color: darken($key-special-border, 4%);
+                    border-top-color: darken($key-special-border, 6%);
+                    border-bottom-color: darken($key-special-border, 2%);
+                    background: $key-special-border;
+                }
+            }
+
             &.--l-nandibus, &.--r-nandibus {
                 font-family: 'Archivo Black', sans-serif;
             }
 
             &.--enter {
                 position: relative;
-                background: linear-gradient($key-background, darken($key-background, 1%));
+                background: linear-gradient($key-special-background, darken($key-special-background, 1%));
 
                 .append {
-                    background: linear-gradient(darken($key-background, 1%), darken($key-background, 3%));
-                    width: 2.5cm;
+                    background: linear-gradient(darken($key-special-background, 1%), darken($key-special-background, 3%));
+                    width: 2.8cm;
                     height: 2.6cm;
                     position: absolute;
-                    border: .25cm solid $key-border;
+                    border: .25cm solid $key-special-border;
                     border-top: none;
-                    bottom: -2.6cm;
+                    bottom: -2.59cm;
                     right: -0.25cm;
-                    border-top-color: darken($key-border, 3%);
-                    border-bottom-color: lighten($key-border, 7%);
+                    border-top-color: darken($key-special-border, 3%);
+                    border-bottom-color: lighten($key-special-border, 7%);
+                }
+
+                &:hover {
+                    background: linear-gradient(darken($key-special-background, 3%), darken($key-special-background, 2%));
+
+                    .append {
+                        background: linear-gradient(darken($key-special-background, 2%), $key-special-background);
+                    }
+                }
+
+                &:active {
+                    border-left-color: darken($key-special-border, 4%);
+                    border-left-color: darken($key-special-border, 4%);
+                    border-top-color: darken($key-special-border, 6%);
+                    border-bottom-color: darken($key-special-border, 2%);
+                    background: $key-special-border;
+
+                    .append {
+                        border-left-color: darken($key-special-border, 4%);
+                        border-left-color: darken($key-special-border, 4%);
+                        border-top-color: darken($key-special-border, 6%);
+                        border-bottom-color: darken($key-special-border, 2%);
+                        background: $key-special-border;
+                    }
                 }
             }
 
-            &.--enter:hover {
-                background: linear-gradient(darken($key-background, 3%), darken($key-background, 2%));
-
-                .append {
-                    background: linear-gradient(darken($key-background, 2%), $key-background);
-                }
-            }
-
-            &.--enter:active {
-                border-left-color: darken($key-border, 4%);
-                border-left-color: darken($key-border, 4%);
-                border-top-color: darken($key-border, 6%);
-                border-bottom-color: darken($key-border, 2%);
-                background: $key-border;
-
-                .append {
-                    border-left-color: darken($key-border, 4%);
-                    border-left-color: darken($key-border, 4%);
-                    border-top-color: darken($key-border, 6%);
-                    border-bottom-color: darken($key-border, 2%);
-                    background: $key-border;
-                }
-            }
         }
     }
 }

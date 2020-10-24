@@ -1,7 +1,11 @@
 
+/* INIT */
 
 const nandibus = document.querySelector('.nandibus');
-const keysArray = document.querySelectorAll('.key');
+
+
+/* RESIZE NANDIBUS */
+
 const nandibusWitdh = nandibus.clientWidth;
 
 const resizeNandibus = () => {
@@ -10,30 +14,13 @@ const resizeNandibus = () => {
     nandibus.style.transform = `scale(${scale})`;
 }
 
-const addEventListenersToKeys = ()=>{
-    Array.from(keysArray).forEach(function(element) {
-        element.addEventListener('click', playclip);
-      });
-}
-
 resizeNandibus();
-addEventListenersToKeys();
-
 window.addEventListener('resize', resizeNandibus);
 
-function playclip (){
-    if (navigator.appName == "Microsoft Internet Explorer" && (navigator.appVersion.indexOf("MSIE 7")!=-1) || (navigator.appVersion.indexOf("MSIE 8")!=-1)) {
-    if (document.getElementById('nandibus'))
-     {
-      document.getElementById('nandibus').sound.src = "sounds/click.mp3";
-     }
-    }
-    
-    else {
-    {
-    var audio = document.getElementsByTagName("audio")[0];
-    audio.play();
-    }
-    }
-    }
-    
+
+/* ADD SOUND TO KEY PRESS */
+
+const keys = document.querySelectorAll('.key');
+const keyPressSound = document.getElementById('key-press-sound');
+
+Array.from(keys).forEach(el => el.addEventListener('click', () => keyPressSound.play() ));

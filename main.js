@@ -24,7 +24,12 @@ window.addEventListener('resize', resizeNandibus);
 const keyPressSound = document.getElementById('key-press-sound');
 const playSound = () => keyPressSound.paused ? keyPressSound.play() : keyPressSound.currentTime = 0;
 
-keys.forEach(key => key.addEventListener('click', playSound ));
+const manageKeyPressEvent = ()=>{
+    playSound();
+    lightsAnimation(keyPressedAnimation, 100);
+}
+
+keys.forEach(key => key.addEventListener('click', manageKeyPressEvent ));
 
 
 /* CLICK NANDIBUS KEY ON KEYPRESS */
@@ -37,6 +42,10 @@ window.addEventListener('keydown', e => {
     key.classList.add('hover');
     key.classList.add('active');
     key.click();
+ // Run light animation on key press   
+    
+    
+
 
     setTimeout(() => {
         key.classList.remove('active');
@@ -93,6 +102,14 @@ const turnOnAnimation = [
     { active: [ lights.blue, lights.red, lights.yellow ] },
     { active: [ ] },
     { active: [ lights.blue, lights.red, lights.yellow ] },
+];
+const keyPressedAnimation = [
+    { active: [ ] },
+    { active: [ lights.blue,lights.red  ] },
+    { active: [ lights.red ] },
+    { active: [ lights.yellow ] },
+    { active: [ lights.red, lights.blue ] },
+     { active: [ lights.red, lights.blue, lights.yellow ] },
 ];
 
 

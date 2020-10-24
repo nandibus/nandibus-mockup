@@ -29,25 +29,8 @@ keys.forEach(key => key.addEventListener('click', playSound ));
 
 /* CLICK NANDIBUS KEY ON KEYPRESS */
 
-////
-
-const lights = Array.from(document.querySelectorAll('.nandibus-lights div'));
-
-const toogleLight = () => {
-
-    lights.forEach(light => {
-        light.classList.contains('--on') ?
-            light.classList.remove('--on') :
-            light.classList.add('--on');
-    });
-};
-
 window.addEventListener('keydown', e => {
     const key = keys.filter(key => key.dataset.keycode === e.code)[0];
-
-    if (e.code === 'KeyL') {
-        toogleLight();
-    }
 
     if (!key) { return; }
 
@@ -59,3 +42,60 @@ window.addEventListener('keydown', e => {
         key.classList.remove('active');
     }, 100);
 });
+
+/* LIGHT ANIMATION */
+
+const sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+};
+
+const lights = {
+    blue: document.querySelector('.nandibus-lights .blue'),
+    red: document.querySelector('.nandibus-lights .red'),
+    yellow: document.querySelector('.nandibus-lights .yellow')
+};
+
+const lightsAnimation = (states, defaultDuration) => {
+
+    const turnOffLights = () => {
+        lights.blue.classList.remove('--on');
+        lights.red.classList.remove('--on');
+        lights.yellow.classList.remove('--on');
+    }
+
+    const stateTransformed = states.map(state => {
+        return { 
+            action: () => {
+                turnOffLights();
+                state.active.forEach(el => el.classList.add('--on'));
+            },
+            delay: state.duration | defaultDuration
+        }
+    });
+
+    const executeStep = (pos, states) => {
+        const state = states[pos];
+        if (!state) { return; }
+        state.action();
+        sleep(state.delay).then(() => { executeStep(pos + 1, states); });
+    }
+    
+    executeStep(0, stateTransformed);
+};
+
+const turnOnAnimation = [
+    { active: [ lights.blue ] },
+    { active: [ lights.red ] },
+    { active: [ lights.yellow ] },
+    { active: [ lights.red ] },
+    { active: [ lights.blue ] },
+    { active: [ ] },
+    { active: [ lights.blue, lights.red, lights.yellow ] },
+    { active: [ ] },
+    { active: [ lights.blue, lights.red, lights.yellow ] },
+];
+
+
+setTimeout(function() {
+    lightsAnimation(turnOnAnimation, 300);
+}, 2000);

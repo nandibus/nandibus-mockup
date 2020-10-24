@@ -1,0 +1,237 @@
+$background: #b7c9c8;
+$material: #c9c8c5;
+$material-detail: desaturate(darken($material, 5%), 0%);
+$keyboard: #111;
+$key-color: #fff;
+$key-background: #373737;
+$key-border: darken($key-background, 6%);
+$nandibus-logo: #464646;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Archivo', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: $background;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 1000px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nandibus {
+    background: $material;
+    width: 39cm;
+    height: 17.3cm;
+    border-radius: 0.3cm;
+    padding: 1.2cm;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: baseline;
+    user-select: none;
+
+    box-shadow:
+        inset 0 -0.125cm 0.375cm 0.1em darken($material, 3%),
+        inset 0 0.5625em 0.5em -0.25em darken($material, 10%),
+        0 1px 2px rgba(0,0,0,0.07), 
+        0 2px 4px rgba(0,0,0,0.07), 
+        0 4px 8px rgba(0,0,0,0.07), 
+        0 8px 16px rgba(0,0,0,0.07),
+        0 16px 32px rgba(0,0,0,0.07), 
+        0 32px 64px rgba(0,0,0,0.07);
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0.125em;
+        left: 0.0625em;
+        display: block;
+        width: 100%;
+        height: 1cm;
+        border-radius: 0.3cm;
+        box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material, 10%);
+        filter: blur(0.0625em);
+    }
+
+    .ribbon {
+        width: 100%;
+        display: flex;
+        margin-right: 4.5cm;
+        height: 1.5cm;
+
+        span {
+            display: block;
+            height: 1.5cm;
+            flex-grow: 1;
+            position: relative;
+
+            border-radius: 0.2cm;
+            background: $material-detail;
+            box-shadow:
+                inset 0 0.5625em 0.5em -0.25em darken($material-detail, 5%),
+                0 2px 4px rgba(0,0,0,0.02);
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0.125em;
+                left: 0.0625em;
+                display: block;
+                width: 100%;
+                height: 50%;
+                border-radius: 0.2cm;
+                box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material-detail, 4%);
+            }
+
+        }
+
+        h1 {
+            margin-left: 1cm;
+            margin-right: 1.5cm;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.0cm;
+            letter-spacing: 0.05cm;
+            color: $nandibus-logo;
+
+            text-shadow: 2px 2px 0 lighten($material, 10%);
+            margin-top: 0.05cm;
+        }
+    }
+
+    .keyboard {
+        background: $keyboard;
+        margin-right: 1.5cm;
+        margin-top: 1cm;
+        padding: 0.3cm;
+        border-radius: 0.2cm;
+
+        .line {
+            display: flex;
+            margin: 0.13cm 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+
+        .key {
+            color: $key-color;
+            background: linear-gradient($key-background, darken($key-background, 3%));
+            border: .25cm solid $key-border;
+            border-top-color: darken($key-border, 3%);
+            border-bottom-color: lighten($key-border, 7%);
+            width: 2.2cm;
+            height: 2.2cm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8cm;
+            flex-shrink: 0;
+            flex-basis: auto;
+            margin: 0 0.06cm;
+            text-shadow: 2px 2px 1px darken($key-background, 9%);
+            cursor: pointer;
+
+            &:hover {
+                background: linear-gradient(darken($key-background, 3%), $key-background);
+            }
+
+            &:active {
+                border-left-color: darken($key-border, 4%);
+                border-left-color: darken($key-border, 4%);
+                border-top-color: darken($key-border, 6%);
+                border-bottom-color: darken($key-border, 2%);
+                background: $key-border;
+            }
+
+            &.--backspace { width: 4.2cm; }
+            &.--tab { width: 3cm; }
+            &.--enter { width: 3.4cm; }
+            &.--capslock { width: 3.6cm; }
+            &.--l-shift { width: 2.8cm; }
+            &.--r-shift { width: 3.6cm; }
+            &.--l-ctrl { width: 3.2cm; }
+            &.--l-nandibus, &.--r-nandibus { width: 2.5cm; }
+            &.--alt { width: 2.5cm; }
+            &.--alt-graph { width: 2.5cm; }
+            &.--menu { width: 2.5cm; }
+            &.--r-ctrl { width: 3.2cm; }
+            &.--space { width: 14.5cm; }
+
+            &.--esc,
+            &.--backspace,
+            &.--tab,
+            &.--enter,
+            &.--capslock,
+            &.--l-shift,
+            &.--r-shift,
+            &.--l-ctrl,
+            &.--alt,
+            &.--alt-graph,
+            &.--menu,
+            &.--r-ctrl,
+            &.--space {
+                font-size: 0.4cm;
+            }
+
+            &.--l-nandibus, &.--r-nandibus {
+                font-family: 'Archivo Black', sans-serif;
+            }
+
+            &.--enter {
+                position: relative;
+                background: linear-gradient($key-background, darken($key-background, 1%));
+
+                .append {
+                    background: linear-gradient(darken($key-background, 1%), darken($key-background, 3%));
+                    width: 2.5cm;
+                    height: 2.6cm;
+                    position: absolute;
+                    border: .25cm solid $key-border;
+                    border-top: none;
+                    bottom: -2.6cm;
+                    right: -0.25cm;
+                    border-top-color: darken($key-border, 3%);
+                    border-bottom-color: lighten($key-border, 7%);
+                }
+            }
+
+            &.--enter:hover {
+                background: linear-gradient(darken($key-background, 3%), darken($key-background, 2%));
+
+                .append {
+                    background: linear-gradient(darken($key-background, 2%), $key-background);
+                }
+            }
+
+            &.--enter:active {
+                border-left-color: darken($key-border, 4%);
+                border-left-color: darken($key-border, 4%);
+                border-top-color: darken($key-border, 6%);
+                border-bottom-color: darken($key-border, 2%);
+                background: $key-border;
+
+                .append {
+                    border-left-color: darken($key-border, 4%);
+                    border-left-color: darken($key-border, 4%);
+                    border-top-color: darken($key-border, 6%);
+                    border-bottom-color: darken($key-border, 2%);
+                    background: $key-border;
+                }
+            }
+        }
+    }
+}

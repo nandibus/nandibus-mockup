@@ -116,11 +116,16 @@ const keyPressedAnimation = [
 /* TURN ON AND OFF */
 
 const powerButton = document.querySelector('.power');
+const helloMessage = document.querySelector('.hello-message');
 
 powerButton.addEventListener('click', () => {
     turnon = !turnon;
 
-    turnon ?
-        lightsAnimation(turnOnAnimation, 300) :
+    if (turnon) {
+        lightsAnimation(turnOnAnimation, 300);
+        nandibus.classList.add('--on');
+        helloMessage.classList.add('--loaded');
+    } else {
         turnOffLights();
+    }
 });

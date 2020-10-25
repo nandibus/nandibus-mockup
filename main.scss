@@ -58,6 +58,16 @@ body {
     100% { opacity: 1; margin-top: 0; }
 }
 
+@keyframes nandibus-is-on {
+    0% { margin-top: 0; }
+    100% { margin-top: 4em; }
+}
+
+@keyframes nandibus-is-on-label {
+    0% { opacity: 0; margin-top: -1em; }
+    100% { opacity: 1; margin-top: -2em; }
+}
+
 .nandibus {
     background: $material;
     width: 39cm;
@@ -69,11 +79,11 @@ body {
     position: relative;
     align-items: baseline;
     user-select: none;
-    // margin-top: -100px;
-    // opacity: 0;
-    // animation: 1s hello-nandibus;
-    // animation-delay: .8s;
-    // animation-fill-mode: forwards;
+    margin-top: -100px;
+    opacity: 0;
+    animation: 1s hello-nandibus;
+    animation-delay: .8s;
+    animation-fill-mode: forwards;
 
     box-shadow:
         inset 0 -0.125cm 0.375cm 0.1em darken($material, 3%),
@@ -97,6 +107,59 @@ body {
         box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material, 10%);
         filter: blur(0.0625em);
     }
+
+    &.--on {
+        opacity: 1;
+        margin-top: 0;
+        animation: 1s nandibus-is-on;
+        animation-delay: .4s;
+        animation-fill-mode: forwards;
+    }
+
+    .message {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+
+        .turnon-message {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 20px;
+            margin-top: -2.3em;
+            font-weight: 600;
+            margin-right: 10px;
+
+            .arrow {
+                position: absolute;
+                right: -50px;
+                margin-top: 8px;
+            }
+        }
+
+        .hello-message {
+            display: none;
+            justify-content: center;
+            font-size: 60px;
+            margin-top: 4.0em;
+            font-weight: 600;
+            opacity: 0;
+
+            strong {
+                font-family: 'Archivo Black', sans-serif;
+                letter-spacing: 0.05cm;
+            }
+
+            &.--loaded {
+                animation: 1s nandibus-is-on-label;
+                animation-delay: .4s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    &.--on .message .turnon-message { display: none; }
+    &.--on .message .hello-message { display: flex; }
 
     .ribbon {
         width: 100%;
@@ -128,7 +191,6 @@ body {
                 box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material-detail, 4%);
             }
         }
-
 
         .nandibus-brand {
             margin-left: 1cm;
@@ -429,7 +491,7 @@ body {
             display: block;
             width: 100%;
             height: 50%;
-            border-radius: 0.2cm;
+            border-radius: 0.7cm;
             box-shadow: inset 0.125em 0.3125em 0.125em -0.25em lighten($material-vents, 8%);
         }
 

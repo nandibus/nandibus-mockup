@@ -1,8 +1,9 @@
-$background-blue: #b7c9c8;
-$background-red: #b7c9c8;
-$background-yellow: #b7c9c8;
-$background: $background-blue;
-$material: #c9c8c5;
+$background-vivo: #a6ddda;
+$background-retro: #b7c9c8;
+$background-agressivo: #3CC9EC;
+$background-vivo-tambem: #86c2d1;
+$background: $background-vivo-tambem;
+$material: #c9c9c9;
 $material-detail: desaturate(darken($material, 5%), 0%);
 $keyboard: #111;
 $material-vents: desaturate(darken($material, 10%), 0%);

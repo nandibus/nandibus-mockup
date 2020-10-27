@@ -22,11 +22,21 @@ window.addEventListener('resize', resizeNandibus);
 
 /* ADD SOUND TO KEY PRESS */
 
-const keyPressSound = document.getElementById('key-press-sound');
-const playSound = () => keyPressSound.paused ? keyPressSound.play() : keyPressSound.currentTime = 0;
+const rand = (min, max) => Math.floor(Math.random() * (max-min+1) + min);
 
-const manageKeyPressEvent = ()=>{
-    playSound();
+const keyPressSounds = [
+    document.getElementById('key-press-sound-1'),
+    document.getElementById('key-press-sound-2'),
+    document.getElementById('key-press-sound-3'),
+    document.getElementById('key-press-sound-4')
+];
+
+const playSound = n => keyPressSounds[n].play();
+let soundOrder = 0;
+
+const manageKeyPressEvent = () => {
+    if (soundOrder > 3) { soundOrder = 0; }
+    playSound(soundOrder++);
     lightsAnimation(keyPressedAnimation, 100);
 }
 
@@ -115,6 +125,7 @@ const keyPressedAnimation = [
 
 /* TURN ON AND OFF */
 
+const helloNandibusSound = document.getElementById('hello-nandibus-sound');
 const powerButton = document.querySelector('.power');
 const helloMessage = document.querySelector('.hello-message');
 
@@ -122,10 +133,13 @@ powerButton.addEventListener('click', () => {
     turnon = !turnon;
 
     if (turnon) {
+        // helloNandibusSound.currentTime = 0;
+        helloNandibusSound.play();
         lightsAnimation(turnOnAnimation, 300);
         nandibus.classList.add('--on');
         helloMessage.classList.add('--loaded');
     } else {
+        // helloNandibusSound.pause();
         turnOffLights();
     }
 });
